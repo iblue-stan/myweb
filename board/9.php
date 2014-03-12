@@ -112,7 +112,6 @@
                                 $db->query($sql);
 
                                 while ($result = $db->fetch_array()) {
-//                                print_r($result);
                                     echo "<tr><td>" . $result["product_name"] . "</td>" . "<td>" . $result["price"] . "</td>" . "<td>" . $result["kind"] . "</td>" . "<td>" . $result["memo"] . "</td>" . "</tr>";
                                 }
                                 ?>
