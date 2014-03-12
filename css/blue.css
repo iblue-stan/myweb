@@ -1,0 +1,159 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014/2/17, 上午 08:56:13
+    Author     : iblue
+*/
+body{
+    background-image:url('../images/fire-background.jpg');
+    background-size:100%;
+}
+table.table,th,td{
+    border:1px solid white;
+}
+table.table1,th1,td1{
+    border:1px solid black;
+}
+p{
+    color:white;
+    margin:0px 0px 0px;
+}
+p1{
+    color:black;
+    margin:0px 0px 0px;
+}
+h2{
+    height:50px;
+    line-height:50px;
+    margin:0;
+    padding-left:0px;
+    color: white;
+    text-shadow: -2px 0px 3px #FFFFFF;
+}
+href{}
+
+div#productList{
+    /*    position:absolute;*/
+    margin: 0 auto;
+    width:800px;
+}
+div#container{
+    text-align:left
+}
+div#header{
+    background-color:buttonface;
+}
+div#header h1{
+    height:80px;
+    line-height:80px;
+    margin:0;
+    padding-left:100px;
+    text-shadow: -2px 0px 3px blue;
+}
+div#wrapper{
+    float:left;
+    width:100%;
+}
+div#navigation{
+    background:#F6F0E0;
+    float:left;
+    width:150px;
+    margin-left:-150px;
+}
+div#navigation ul{
+    margin:15px 0;
+    padding:0;
+    list-style-type:none;
+}
+div#navigation li{
+    margin-bottom:5px;
+}
+div#content{
+    margin:0 0px;
+}
+
+
+.menubar{
+    border:none;
+    border:0px;
+    margin:0px;
+    padding:0px;
+    font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+    font-size:14px;
+    font-weight:bold;
+}
+.menubar ul{
+    background: rgb(109,109,109);
+    height:50px;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+.menubar li{
+    float:left;
+    padding:0px;
+}
+.menubar li a{
+    background: rgb(109,109,109);
+    color:#cccccc;
+    display:block;
+    font-weight:normal;
+    line-height:50px;
+    margin:0px;
+    padding:0px 25px;
+    text-align:center;
+    text-decoration:none;
+}
+.menubar li a:hover, .menubar ul li:hover a{
+    background: rgb(71,71,71);
+    color:#FFFFFF;
+    text-decoration:none;
+}
+.menubar li ul{
+    background: rgb(109,109,109);
+    display:none;
+    height:auto;
+    padding:0px;
+    margin:0px;
+    border:0px;
+    position:absolute;
+    width:200px;
+    z-index:200;
+    /*top:1em;
+    /*left:0;*/
+}
+.menubar li:hover ul{
+    display:block;
+}
+.menubar li li {
+    background: rgb(109,109,109);
+    display:block;
+    float:none;
+    margin:0px;
+    padding:0px;
+    width:200px;
+}
+.menubar li:hover li a{
+    background:none;
+}
+.menubar li ul a{
+    display:block;
+    height:50px;
+    font-size:12px;
+    font-style:normal;
+    margin:0px;
+    padding:0px 10px 0px 15px;
+    text-align:left;
+}
+.menubar li ul a:hover, .menubar li ul li:hover a{
+    background: rgb(71,71,71);
+    border:0px;
+    color:#ffffff;
+    text-decoration:none;
+}
+.menubar p{
+    clear:left;
+}
