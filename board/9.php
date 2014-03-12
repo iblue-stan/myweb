@@ -104,15 +104,17 @@
                         <h3>產品列表</h3>
                         <div>
                             <table class="table1" border="1" align="center">
-                                <tr><td>名稱</td><td>價格</td><td>種類</td><td>備註</td></tr>
+                                <tr><td>名稱</td><td>價格</td><td>種類</td><td>備註</td><td>&nbsp;</td></tr>
                                 <?php
                                 $sql = "SELECT * FROM product";
                                 $db = new DB();
                                 $db->connect_db($_DB['host'], $_DB['username'], $_DB['password'], $_DB['dbname']);
                                 $db->query($sql);
-
+                                
                                 while ($result = $db->fetch_array()) {
-                                    echo "<tr><td>" . $result["product_name"] . "</td>" . "<td>" . $result["price"] . "</td>" . "<td>" . $result["kind"] . "</td>" . "<td>" . $result["memo"] . "</td>" . "</tr>";
+                                    $id = $result["id"];
+                                    $deleteLink = "<a href='#' onclick='check_ok($id)'>刪除</a>";
+                                    echo "<tr><td>" . $result["product_name"] . "</td>" . "<td>" . $result["price"] . "</td>" . "<td>" . $result["kind"] . "</td>" . "<td>" . $result["memo"] . "</td>" . "<td>" . $deleteLink . "</td>" . "</tr>";
                                 }
                                 ?>
                             </table>

@@ -1,5 +1,4 @@
 <?php
-print_r($_POST);
 
 require_once '../DB_config.php';
 require_once '../DB_class.php';

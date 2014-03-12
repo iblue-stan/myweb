@@ -5,6 +5,16 @@ function validateEmail(val) {
         alert("E-Mail 格式錯誤!");
     }
 }
+function check_ok(val) {
+    var x;
+    p_id = val;
+    var r = confirm("您確定要刪除嗎？");
+    if (r == 1)
+    {
+        location = '9_del.php?id='+p_id;
+    }
+    
+}
 function visable_pass() {
     var x = document.getElementById("visable").checked;
 
