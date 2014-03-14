@@ -1,24 +1,16 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        print_r($_POST);
-        $username = $_POST["username"];
-        $email = $_POST["email"];
-        $content = $_POST["content"];
+<?php
 
-        $wcont = $username . $email . $content;
-        $filename = "board.txt";
+require_once '../DB_config.php';
+require_once '../DB_class.php';
 
-        if (file_exists($filename)) {
-            $file = fopen($filename, "w");
-            fwrite($file, $wcont);
-            fclose($file);
-        }
-        ?>
-    </body>
-</html>
+$username = filter_input(INPUT_POST,"username");
+$email = filter_input(INPUT_POST,"email");
+$content = filter_input(INPUT_POST,"content");
+
+$sql = "insert into guestbook (name,email,text) values('$username','$email','$content')";
+$db = new DB();
+$db->connect_db($_DB['host'], $_DB['username'], $_DB['password'], $_DB['dbname']);
+$db->query($sql);
+
+echo "資料新增成功，三秒後回到上一頁";
+header('refresh:3;url=7.php');
