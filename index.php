@@ -25,7 +25,7 @@
                     </table>
                     </br>
                     <?php
-                    if (!isset($_SESSION["username_session"])) {
+                    if (empty(filter_input(INPUT_COOKIE,"username_cookie"))) {
                         require_once 'login_form.php';
                     }
                     ?>
@@ -33,9 +33,7 @@
             </div>
             <div id="navigation">
                 <strong>Link Here</strong>
-                <?php
-                require_once($root.'/blue/link_here.php');
-                ?>
+                <?php require_once($root.'/blue/link_here.php'); ?>
             </div>
         </div>
     </body>

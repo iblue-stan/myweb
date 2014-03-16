@@ -4,21 +4,21 @@ require_once '../DB_config.php';
 require_once '../DB_class.php';
 
 //print_r($_POST);
-$username = $_POST["username"];
-$account = $_POST["account"];
-$password = $_POST["password"];
-$address = $_POST["address"];
-$email = $_POST["email"];
-$tel = $_POST["tel"];
-$sex = $_POST["sex"];
-$birthday = $_POST["birthday"];
+$username = filter_input(INPUT_POST,"username");
+$account = filter_input(INPUT_POST,"account");
+$password = filter_input(INPUT_POST,"password");
+$address = filter_input(INPUT_POST,"address");
+$email = filter_input(INPUT_POST,"email");
+$tel = filter_input(INPUT_POST,"tel");
+$sex = filter_input(INPUT_POST,"sex");
+$birthday = filter_input(INPUT_POST,"birthday");
 
-if ($sex = "man") {
+if ($sex == "man") {
     $sex = 1;
 } else {
     $sex = 0;
 }
-$sql = "insert into member (username,account,password,address,email,tel,sex,birthday) values ('$username','$account','$password','$address','$email','$tel','$sex','$birthday')";
+echo $sql = "insert into account (username,account,password,address,email,mobile_phone,sex,birthday) values ('$username','$account','$password','$address','$email','$tel','$sex','$birthday')";
 $db = new DB();
 $db->connect_db($_DB['host'], $_DB['username'], $_DB['password'], $_DB['dbname']);
 $db->query($sql);
