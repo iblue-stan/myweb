@@ -1,6 +1,8 @@
+<!DOCTYPE html>
 <html>
-    <title>iBlue 的個人網站</title>
     <head>
+        <meta charset="UTF-8">
+        <title><a href="index.php">iBlue 的個人網站</a></title>
         <?php
         session_start();
         require_once '../php/function.php';
@@ -10,14 +12,13 @@
     </head>
     <body>
         <div id="container">
-            <div id="header"><h1><a href="index.php">iBlue 的個人網站</a></h1></div>
+            <div id="header"><h1>iBlue 的雜記小舖</h1></div>
             <?php require_once '../menu.php'; ?>
             <div id="wrapper">
                 <div id="content">
                     </br>
                     <table border="1" align="center">
-                        <caption>您的訂購單內容：</caption>
-                        <tr><td>產品名稱</td><td>價格</td><td>購買數量</td><td>小計</td></tr>
+                        <caption>訂購單內容</caption>
                         <?php
                         require_once '../DB_config.php';
                         require_once '../DB_class.php';
@@ -26,25 +27,15 @@
                         $db->connect_db($_DB['host'], $_DB['username'], $_DB['password'], $_DB['dbname']);
                         $db->query($sql);
 
+                        $item = unserialize(filter_input(INPUT_COOKIE, "shop"));
+                        $total = 0;
+                        $price = 0;
+
                         while ($result = $db->fetch_array()) {
                             $id = $result["id"];
-                            if (!empty($_POST["$id"])) {
-                                $item[$id] = $_POST["$id"];
-                            }
-                        }
-
-                        $arr_item = serialize($item);
-                        setcookie("shop", $arr_item, time() + 86400);
-
-                        $sql = "SELECT * FROM product";
-                        $db->query($sql);
-                        $total = 0;
-
-                        while ($result1 = $db->fetch_array()) {
-                            $id = $result1["id"];
                             if (!empty($item["$id"])) {
-                                $price = $result1["price"] * $item[$id];
-                                echo "<tr><td>" . $result1['product_name'] . "</td><td>" . $result1["price"] . "</td><td>" . $item[$id] . "</td><td>" . $price . "</td></tr>";
+                                $price = $result["price"] * $item[$id];
+                                echo "<tr><td>" . $result['product_name'] . "</td><td>" . $result["price"] . "</td><td>" . $item[$id] . "</td><td>" . $price . "</td></tr>";
                             }
                             $total = $price + $total;
                             $price = 0;
@@ -53,9 +44,7 @@
                         ?>
                         <tr>
                             <td colspan="4">
-                                <input type="button" value="繼續購物" onclick="window.location.href = '6.php'"/>
-                                <input type="button" value="購物車內容" onclick="window.location.href = '6_list.php'"/>
-                                <input type="button" value="確認訂購" onclick="window.location.href = '6_confirm.php'"/>
+                                <input type="button" value="繼續購物" onclick="window.location.href = '6.php?id=kill'"/>
                             </td>
                         </tr>
                     </table>

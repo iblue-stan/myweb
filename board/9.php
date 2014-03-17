@@ -1,5 +1,5 @@
 <html>
-    <title>iBlue 的個人網站</title>
+    <title><a href="index.php">iBlue 的個人網站</a></title>
     <head>
         <script type="text/javascript" src="../js/blue.js"></script>
         <script type="text/javascript" src="../js/selectDate.js"></script>
@@ -34,12 +34,6 @@
                                 <?php
                                 echo "今天日期：";
                                 echo today_day("", "", "");
-//                                $db = new DB();
-//                                $db->connect_db($_DB['host'], $_DB['username'], $_DB['password'], $_DB['dbname']);
-//                                $db->query("select * from guestbook");
-//                                while ($result = $db->fetch_array()) {
-//                                    print_r($result);
-//                                }
                                 ?>
                             </td>
                         </tr>
@@ -110,7 +104,7 @@
                                 $db = new DB();
                                 $db->connect_db($_DB['host'], $_DB['username'], $_DB['password'], $_DB['dbname']);
                                 $db->query($sql);
-                                
+
                                 while ($result = $db->fetch_array()) {
                                     $id = $result["id"];
                                     $deleteLink = "<a href='#' onclick='check_ok($id)'>刪除</a>";

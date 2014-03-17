@@ -10,7 +10,7 @@
     </head>
     <body>
         <div id="container">
-            <div id="header"><h1>iBlue 的雜記小舖</h1></div>
+            <div id="header"><h1><a href="../index.php">iBlue 的雜記小舖</a></h1></div>
             <?php require_once '../menu.php'; ?>
             <div id="wrapper">
                 <div id="content">

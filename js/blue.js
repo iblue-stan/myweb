@@ -38,6 +38,21 @@ function visable_pass() {
         document.getElementById("password").type = 'password';
     }
 }
+
+function chk_disable(obj) {
+  var x = obj;
+  var y = 'chk_'+x;
+  var z = document.getElementById(y).checked;
+  var a = 'item_'+x;  
+  var b = document.getElementById(a).disabled;
+  if(z == 1){
+    document.getElementById(a).disabled = false;
+  }
+  else{
+    document.getElementById(a).disabled = true;
+  }   
+}
+
 function chk_read() {
     var x = document.getElementById("check_3").checked;
     var x1 = document.getElementById("check_1").checked;
