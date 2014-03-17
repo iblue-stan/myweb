@@ -1,5 +1,5 @@
 <html>
-    <title><a href="index.php">iBlue 的個人網站</a></title>
+    <title>iBlue 的個人網站</title>
     <head>
         <?php
         session_start();

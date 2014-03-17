@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <title>iBlue 的個人網站</title>
         <script type="text/javascript" src="../js/blue.js"></script>
         <link rel="stylesheet" href="../css/blue.css" type="text/css" media="screen"/>
         <?php
