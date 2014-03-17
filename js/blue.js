@@ -15,6 +15,18 @@ function check_ok(val) {
     }
     
 }
+
+function check_ok_7(val) {
+    p_id = val;
+    alert(p_id);
+    var r = confirm("您確定要刪除嗎？");
+    if (r == 1)
+    {
+        location = '7_del.php?id='+p_id;
+    }
+    
+}
+
 function visable_pass() {
     var x = document.getElementById("visable").checked;
 

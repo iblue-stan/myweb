@@ -31,13 +31,14 @@
                         <table border="1" align="center">
                             <caption>iBlue&留言版</caption>
                             <?php
-                            //$display = '<tr><td>'.$result['name'].'</td>'.'<td>'.$result['email'].'</td>'.'<td>'.$result['text'].'</td</tr>';
                             $sql = "SELECT * FROM guestbook";
                             $db = new DB();
                             $db->connect_db($_DB['host'], $_DB['username'], $_DB['password'], $_DB['dbname']);
                             $db->query($sql);
                             while ($result = $db->fetch_array()) {
-                                echo '<tr><td>'.$result['name'].'</td>'.'<td>'.$result['email'].'</td>'.'<td>'.$result['text'].'</td</tr>';
+                                $id = $result["id"];
+                                $deleteLink = "<a href='#' onclick='check_ok_7($id)'>刪除</a>";
+                                echo '<tr><td>' . $result['name'] . '</td><td>' . $result['email'] . '</td><td>' . $result['text'] . '</td><td>' . $deleteLink . '</td></tr>';
                             }
                             ?>
                         </table>
