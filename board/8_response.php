@@ -18,7 +18,7 @@ if ($sex == "man") {
 } else {
     $sex = 0;
 }
-echo $sql = "insert into account (username,account,password,address,email,mobile_phone,sex,birthday) values ('$username','$account','$password','$address','$email','$tel','$sex','$birthday')";
+$sql = "insert into account (username,account,password,address,email,mobile_phone,sex,birthday) values ('$username','$account','$password','$address','$email','$tel','$sex','$birthday')";
 $db = new DB();
 $db->connect_db($_DB['host'], $_DB['username'], $_DB['password'], $_DB['dbname']);
 $db->query($sql);

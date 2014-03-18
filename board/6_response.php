@@ -1,5 +1,5 @@
 <html>
-    <title>iBlue 的個人網站</title>
+    <title>iBlue 的雜記小舖</title>
     <head>
         <?php
         session_start();
@@ -10,8 +10,15 @@
     </head>
     <body>
         <div id="container">
-            <div id="header"><h1><a href="index.php">iBlue 的個人網站</a></h1></div>
-            <?php require_once '../menu.php'; ?>
+            <div id="header"><h1><a href="index.php">iBlue 的雜記小舖</a></h1></div>
+            <?php
+            require_once '../menu.php';
+            if (empty($_POST)) {
+                echo "<br /><p align='center'>請輸入訂購數量</p>";
+                header('refresh:3;url=6.php');
+                return;
+            }
+            ?>
             <div id="wrapper">
                 <div id="content">
                     </br>

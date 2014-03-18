@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>iBlue 的個人網站</title>
+        <title>iBlue 的雜記小舖</title>
         <script type="text/javascript" src="../js/blue.js"></script>
         <link rel="stylesheet" href="../css/blue.css" type="text/css" media="screen"/>
         <?php
@@ -38,7 +38,11 @@
                             $db->query($sql);
                             while ($result = $db->fetch_array()) {
                                 $id = $result["id"];
-                                $deleteLink = "<a href='#' onclick='check_ok_7($id)'>刪除</a>";
+                                if (!empty($_COOKIE["username_cookie"])) {
+                                    $deleteLink = "<a href='#' onclick='check_ok_7($id)'>刪除</a>";
+                                } else {
+                                    $deleteLink = "<img src='../images/linux.png' alt='Smiley face' height='26' width='26'>";
+                                }
                                 echo '<tr><td>' . $result['name'] . '</td><td>' . $result['email'] . '</td><td>' . $result['text'] . '</td><td>' . $deleteLink . '</td></tr>';
                             }
                             ?>
