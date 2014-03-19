@@ -47,6 +47,7 @@ function chk_disable(obj) {
   var b = document.getElementById(a).disabled;
   if(z == 1){
     document.getElementById(a).disabled = false;
+    document.getElementById(a).value = 1;
   }
   else{
     document.getElementById(a).disabled = true;

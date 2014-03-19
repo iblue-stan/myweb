@@ -35,14 +35,20 @@
                                 $id = $result["id"];
                                 $item_id = "item_" . $result["id"];
                                 $chk_id = "chk_" . $result["id"];
-                                echo "<tr><td>" . "<input type='checkbox' namd=$id id=$chk_id onclick='chk_disable($id);' />" . "</td><td>" . $result["product_name"] . "</td><td>" . $result["price"] . "</td><td><input type='text' size='2' name=$id id=$item_id disabled />" . "</td></tr>";
+                                echo "<tr><td>" . "<input type='checkbox' namd=$id id=$chk_id onclick='chk_disable($id);' />" . "</td><td>" . $result["product_name"] . "</td><td>" . $result["price"] . "</td><td><input type='text' size='2' maxlength='2' name=$id id=$item_id disabled />" . "</td></tr>";
                             }
                             ?>
                             <tr>
                                 <td colspan="4">
                                     <input type="submit" value="加入購物車"/>
                                     <input type="reset" value="取消"/>
-                                    <input type="button" value="購物車內容" onclick="window.location.href = '6_list.php'"/>
+                                    <?php
+                                    
+                                    if (!empty($_COOKIE["shop"])) {
+                                        $file_name = "onclick=\"window.location.href = '6_list.php'\"";
+                                        echo $link_list = "<input type='button' value='購物車內容' $file_name />";
+                                    }
+                                    ?>
                                 </td>
                             </tr>
                         </table>

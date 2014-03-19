@@ -17,10 +17,27 @@
                     </br>
                     <table border="1" align="center">
                         <caption>訂購單內容</caption>
+                        <tr><td>產品名稱</td><td>單價</td><td>訂購數量</td><td>小計</td><td>&nbsp;</td></tr>
                         <?php
                         require_once '../DB_config.php';
                         require_once '../DB_class.php';
-                        $sql = "SELECT * FROM product";
+
+                        if (!empty($_COOKIE["shop"])) {
+                            $shot = unserialize($_COOKIE["shop"]);
+                            $key_value = "";
+                            $out = "";
+                            foreach ($shot as $key => $value) {
+                                $key_value = " or id='$key'";
+                                $out = $out . $key_value;
+                            }
+                        } else {
+                            return;
+                        }
+
+                        $out1 = substr($out, 3, strlen($out));
+                        $sql = "select * from product where $out1";
+
+                        //$sql = "SELECT * FROM product";
                         $db = new DB();
                         $db->connect_db($_DB['host'], $_DB['username'], $_DB['password'], $_DB['dbname']);
                         $db->query($sql);

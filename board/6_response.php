@@ -13,6 +13,14 @@
             <div id="header"><h1><a href="index.php">iBlue 的雜記小舖</a></h1></div>
             <?php
             require_once '../menu.php';
+
+            foreach ($_POST as $key => $value) {
+                if (empty($value)) {
+                    echo "Empty!!<br />";
+                    unset($_POST["$key"]);
+                }
+            }
+
             if (empty($_POST)) {
                 echo "<br /><p align='center'>請輸入訂購數量</p>";
                 header('refresh:3;url=6.php');
@@ -26,26 +34,46 @@
                         <caption>您的訂購單內容：</caption>
                         <tr><td>產品名稱</td><td>價格</td><td>購買數量</td><td>小計</td></tr>
                         <?php
+                        $key_value = "";
+                        $out = "";
+                        $flag = "";
+                        foreach ($_POST as $key => $value) {
+                            if (!empty($value)) {
+                                $key_value = " or id='$key'";
+                                $out = $out . $key_value;
+                            }
+                        }
+
+                        $out1 = substr($out, 3, strlen($out));
+                        $sql = "select * from product where $out1";
+
                         require_once '../DB_config.php';
                         require_once '../DB_class.php';
-                        $sql = "SELECT * FROM product";
+//$sql = "SELECT * FROM product";
                         $db = new DB();
                         $db->connect_db($_DB['host'], $_DB['username'], $_DB['password'], $_DB['dbname']);
                         $db->query($sql);
 
                         while ($result = $db->fetch_array()) {
                             $id = $result["id"];
-                            if (!empty($_POST["$id"])) {
-                                $item[$id] = $_POST["$id"];
-                            }
+                            $item[$id] = $_POST["$id"];
                         }
 
-                        $arr_item = serialize($item);
-                        setcookie("shop", $arr_item, time() + 86400);
+                        if (!empty($_COOKIE["shop"])) {
+                            $shot = unserialize($_COOKIE["shop"]);
+                            foreach ($item as $key => $value) {
+                                $shot["$key"] = $value;
+                            }
+                            $arr_item = serialize($shot);
+                            setcookie("shop", $arr_item, time() + 86400);
+                        } else {
+                            $arr_item = serialize($item);
+                            setcookie("shop", $arr_item, time() + 86400);
+                        }
 
-                        $sql = "SELECT * FROM product";
                         $db->query($sql);
                         $total = 0;
+                        $price = 0;
 
                         while ($result1 = $db->fetch_array()) {
                             $id = $result1["id"];

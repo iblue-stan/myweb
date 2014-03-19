@@ -19,24 +19,41 @@
                     </br>
                     <table border="1" align="center">
                         <caption>訂購單內容</caption>
+                        <tr><td>商品名稱</td><td>單價</td><td>數量</td><td>小計</td></tr>
                         <?php
                         require_once '../DB_config.php';
                         require_once '../DB_class.php';
-                        $sql = "SELECT * FROM product";
+
+//                        $sql = "SELECT * FROM product";
+
+                        if (!empty($_COOKIE["shop"])) {
+                            $shot = unserialize($_COOKIE["shop"]);
+                            $key_value = "";
+                            $out = "";
+                            foreach ($shot as $key => $value) {
+                                $key_value = " or id='$key'";
+                                $out = $out . $key_value;
+                            }
+                        }
+
+                        $out1 = substr($out, 3, strlen($out));
+                        $sql = "select * from product where $out1";
                         $db = new DB();
                         $db->connect_db($_DB['host'], $_DB['username'], $_DB['password'], $_DB['dbname']);
                         $db->query($sql);
 
-                        $item = unserialize(filter_input(INPUT_COOKIE, "shop"));
                         $total = 0;
                         $price = 0;
 
                         while ($result = $db->fetch_array()) {
                             $id = $result["id"];
-                            if (!empty($item["$id"])) {
-                                $price = $result["price"] * $item[$id];
-                                echo "<tr><td>" . $result['product_name'] . "</td><td>" . $result["price"] . "</td><td>" . $item[$id] . "</td><td>" . $price . "</td></tr>";
-                            }
+                            $price = $result["price"] * $shot[$id];
+                            echo "<tr><td>" . $result['product_name'] . "</td><td>" . $result["price"] . "</td><td>" . $shot[$id] . "</td><td>" . $price . "</td></tr>";
+
+//                            if (!empty($item["$id"])) {
+//                                $price = $result["price"] * $item[$id];
+//                                echo "<tr><td>" . $result['product_name'] . "</td><td>" . $result["price"] . "</td><td>" . $item[$id] . "</td><td>" . $price . "</td></tr>";
+//                            }
                             $total = $price + $total;
                             $price = 0;
                         }
